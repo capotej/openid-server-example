@@ -9,6 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20100122122259) do
+
+  create_table "open_id_associations", :force => true do |t|
+    t.binary  "server_url", :null => false
+    t.string  "handle",     :null => false
+    t.binary  "secret",     :null => false
+    t.integer "issued",     :null => false
+    t.integer "lifetime",   :null => false
+    t.string  "assoc_type", :null => false
+  end
+
+  create_table "open_id_nonces", :force => true do |t|
+    t.string  "server_url", :null => false
+    t.integer "timestamp",  :null => false
+    t.string  "salt",       :null => false
+  end
 
 end
