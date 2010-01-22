@@ -177,7 +177,7 @@ EOS
     if @server.nil?
       server_url = url_for :action => 'index', :only_path => false
       dir = Pathname.new(RAILS_ROOT).join('db').join('openid-store')
-      store = ActiveRecordOpenIDStore.new#OpenID::Store::Filesystem.new(dir)
+      store = ActiveRecordStore.new#OpenID::Store::Filesystem.new(dir)
       @server = Server.new(store, server_url)
     end
     return @server
