@@ -3,7 +3,7 @@ require 'pathname'
 require "openid"
 require 'openid/extensions/sreg'
 require 'openid/extensions/pape'
-require 'openid/store/filesystem'
+#require 'openid/store/filesystem'
 
 class ConsumerController < ApplicationController
   layout nil
@@ -114,7 +114,7 @@ class ConsumerController < ApplicationController
   def consumer
     if @consumer.nil?
       dir = Pathname.new(RAILS_ROOT).join('db').join('cstore')
-      store = OpenID::Store::Filesystem.new(dir)
+      store = ActiveRecordStore.new#OpenID::Store::Filesystem.new(dir)
       @consumer = OpenID::Consumer.new(session, store)
     end
     return @consumer
